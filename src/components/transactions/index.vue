@@ -20,7 +20,7 @@ export default {
   methods: {
     async getTransactions() {
       this.transactions = await this.frontendSDK.coin.getTransactions({
-        blockchainIds: chains.filter((chain) => chain.label),
+        blockchainIds: chains,
       });
     },
   },
