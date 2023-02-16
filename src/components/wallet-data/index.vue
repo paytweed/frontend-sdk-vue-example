@@ -12,6 +12,7 @@ import {
   LogoutButton,
   Powered,
 } from "./style";
+import Transactions from "../transactions/index.vue";
 
 const chains = [
   {
@@ -34,6 +35,7 @@ export default {
       address: "tz1ZyCN2givAPjaPwN1HkRQMpoCW6JPkmJuv",
       chains,
       currentChain: 0,
+      showTransactions: false,
     };
   },
   components: {
@@ -48,9 +50,34 @@ export default {
     Button,
     LogoutButton,
     Powered,
+    Transactions,
   },
   inject: ["frontendSDK"],
-
+  methods: {
+    async sendTransaction() {
+      await this.frontendSDK.coin.sendToUser({
+        blockchainId: this.chains[this.currentChain].label,
+        cryptoCurrencyAmount: "0.000001",
+        userId: "1",
+      });
+    },
+    async logout() {
+      await this.frontendSDK.wallet.logout();
+    },
+    async showMyTransactions() {
+      this.showTransactions = !this.showTransactions;
+      const transactions = await this.frontendSDK.coin.getTransactions();
+      console.log(transactions);
+    },
+    async createRecoveryKit() {
+      await this.frontendSDK.wallet.createRecovery();
+    },
+    async showQrCode() {
+      await this.frontendSDK.wallet.showAddress({
+        blockchainId: this.chains[this.currentChain].label,
+      });
+    },
+  },
   watch: {
     currentChain: {
       async handler() {
@@ -69,7 +96,7 @@ export default {
     <Title>Welcome to Tweed Example</Title>
     <WalletAddress>
       <Address>{{ address }}</Address>
-      <QrButton>QR</QrButton>
+      <QrButton @click="showQrCode">QR</QrButton>
     </WalletAddress>
     <MenuItemsLine>
       <ChainButton
@@ -85,14 +112,17 @@ export default {
     </MenuItemsLine>
     <Menu>
       <MenuItemsLine>
-        <Button>Send Transaction</Button>
-        <Button>Create a Recovery Kit</Button>
-        <Button>My transactions</Button>
+        <Button @click="sendTransaction">Send Transaction</Button>
+        <Button @click="createRecoveryKit">Create a Recovery Kit</Button>
+        <Button @click="showMyTransactions">{{
+          !showTransactions ? "My transactions" : "close"
+        }}</Button>
       </MenuItemsLine>
       <MenuItemsLine>
-        <LogoutButton>Logout</LogoutButton>
+        <LogoutButton @click="logout">Logout</LogoutButton>
       </MenuItemsLine>
     </Menu>
+    <Transactions v-if="showTransactions" />
     <Powered>Powered by Tweed</Powered>
   </Wrapper>
 </template>

@@ -114,7 +114,7 @@ export const LogoutButton = styled.button`
 `;
 
 export const Powered = styled.body`
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   font-size: 15px;
 
