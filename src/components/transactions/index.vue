@@ -1,7 +1,7 @@
 <script>
 import { Table, SubTitle, Th, Td } from "./style";
 
-const chains = ["tezos", "polygon", "ethereum"];
+const chains = ["tezosGhost", "polygonMumbai", "ethereumGoerli"];
 
 export default {
   data() {

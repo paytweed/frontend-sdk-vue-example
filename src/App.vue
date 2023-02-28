@@ -17,6 +17,7 @@ export default {
           const { answer } = await response.json();
           return answer;
         },
+        defaultBlockchainIds: ["ethereumGoerli", "tezosGhost", "polygonMumbai"],
       }),
     };
   },

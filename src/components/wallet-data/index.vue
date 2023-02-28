@@ -16,15 +16,15 @@ import Transactions from "../transactions/index.vue";
 
 const chains = [
   {
-    label: "tezos",
+    label: "tezosGhost",
     id: 0,
   },
   {
-    label: "polygon",
+    label: "polygonMumbai",
     id: 1,
   },
   {
-    label: "ethereum",
+    label: "ethereumGoerli",
     id: 2,
   },
 ];
