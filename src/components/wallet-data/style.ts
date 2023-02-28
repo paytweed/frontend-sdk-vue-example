@@ -66,7 +66,7 @@ export const ChainButton = styled.button`
   border: 2px solid dodgerblue;
   padding: 0px 24px;
   margin: 0px 12px;
-  width: 150px;
+  width: fit-content;
   background: #fff;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
