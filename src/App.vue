@@ -7,7 +7,6 @@ export default {
   provide() {
     return {
       frontendSDK: TweedFrontendSDK.setup({
-        environment: Environment.demo,
         sendMessageToBackend: async (message) => {
           const response = await fetch("http://localhost:3010/message", {
             body: JSON.stringify({ message }),
