@@ -10,7 +10,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@paytweed/frontend-sdk": "^0.10.0",
+    "@paytweed/frontend-sdk": "^0.11.0",
     "vue": "^3.2.45",
     "vue3-styled-components": "^1.2.1"
   },
