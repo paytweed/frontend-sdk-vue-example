@@ -48,9 +48,9 @@ export default {
     <tbody v-for="entry in transactions[chain]" :key="entry">
       <tr>
         <Td>{entry.createdAt}</Td>
-        <Td>{entry.cryptoCurrencyAmount}</Td>
-        <Td>{entry.cryptoCurrencyToken.name}</Td>
-        <Td>{entry.cryptoCurrencyToken.symbol}</Td>
+        <Td>{entry.value}</Td>
+        <Td>{entry.tokenMetadata.tokenName}</Td>
+        <Td>{entry.tokenMetadata.tokenSymbol}</Td>
         <Td>{entry.direction}</Td>
         <Td>{entry.fromAddress}</Td>
         <Td>{entry.toAddress}</Td>

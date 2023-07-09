@@ -57,7 +57,7 @@ export default {
     async sendTransaction() {
       await this.frontendSDK.coin.sendToUser({
         blockchainId: this.chains[this.currentChain].label,
-        cryptoCurrencyAmount: "0.000001",
+        value: "0.000001",
         userId: "1",
       });
     },
