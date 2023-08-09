@@ -1,12 +1,13 @@
 <script>
 import { Table, SubTitle, Th, Td } from "./style";
 
-const chains = ["tezosGhost", "polygonMumbai", "ethereumGoerli"];
 
 export default {
+  props: {
+    chains: Array
+  },
   data() {
     return {
-      chains,
       transactions: [],
     };
   },
@@ -19,7 +20,7 @@ export default {
   inject: ["frontendSDK"],
   methods: {
     async getTransactions() {
-      this.transactions = await this.frontendSDK.coin.getTransactions({
+      this.transactions = await this.frontendSDK.crypto.getTransactions({
         blockchainIds: chains,
       });
     },
