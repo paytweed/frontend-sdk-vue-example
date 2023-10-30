@@ -10,7 +10,7 @@ import {
   Menu,
   Button,
   LogoutButton,
-  Powered
+  Powered,
 } from "./style";
 import Transactions from "../transactions/index.vue";
 import SettingsSection from "../settings-section/index.vue";
@@ -20,7 +20,7 @@ export default {
     return {
       address: "",
       chains: [],
-      currentChain: 'ethereumGoerli',
+      currentChain: "ethereumGoerli",
       showTransactions: false,
     };
   },
@@ -37,7 +37,7 @@ export default {
     LogoutButton,
     Powered,
     Transactions,
-    SettingsSection
+    SettingsSection,
   },
   inject: ["frontendSDK"],
   methods: {
@@ -65,13 +65,13 @@ export default {
     },
     async buyNft() {
       await this.frontendSDK.nft.buyWithFiat({
-        nftId: '1',
+        nftId: "1",
       });
     },
   },
   async mounted() {
-    const blockchains = await this.frontendSDK.blockchain.list()
-    this.chains = blockchains
+    const blockchains = await this.frontendSDK.blockchain.list();
+    this.chains = blockchains.map((chain) => chain.chainId);
 
     this.address = await this.frontendSDK.wallet.getAddress({
       blockchainId: this.currentChain,
@@ -90,7 +90,7 @@ export default {
 </script>
 
 <template>
-  <SettingsSection/>
+  <SettingsSection />
   <Wrapper>
     <Title>Welcome to Tweed Example</Title>
     <WalletAddress>
@@ -117,8 +117,8 @@ export default {
       </MenuItemsLine>
     </Menu>
     <Transactions :chains="[currentChain]" />
-     <MenuItemsLine>
-        <LogoutButton @click="logout">Logout</LogoutButton>
-      </MenuItemsLine>
+    <MenuItemsLine>
+      <LogoutButton @click="logout">Logout</LogoutButton>
+    </MenuItemsLine>
   </Wrapper>
 </template>
